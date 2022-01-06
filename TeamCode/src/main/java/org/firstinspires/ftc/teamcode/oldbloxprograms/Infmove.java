@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode.oldbloxprograms;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 @Autonomous(name = "MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow (Blocks to Java)")
 @Disabled
-public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow extends LinearOpMode {
+public class Infmove extends LinearOpMode {
 
     private DcMotor Front_right;
     private DcMotor Front_left;
@@ -24,7 +25,7 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
 
 
     public void runOpMode() {
-        double Angle;
+        double Angle=0;
 
         Front_right = hardwareMap.get(DcMotor.class, "Front_right");
         Front_left = hardwareMap.get(DcMotor.class, "Front_left");
@@ -50,8 +51,8 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
                     i_inc = -i_inc;
                 }
                 for (i = 1; i_inc >= 0 ? i <= i_end : i >= i_end; i += i_inc) {
-                    move(null, null);
-                    Strafe_at_angle(null, null);
+                    //move(null, null);
+                    //Strafe_at_angle(null, null);
                     Front_right.setTargetPosition((int) (Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885));
                 }
                 double i_end2 = Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885;
@@ -60,8 +61,8 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
                     i_inc2 = -i_inc2;
                 }
                 for (i = 1; i_inc2 >= 0 ? i <= i_end2 : i >= i_end2; i += i_inc2) {
-                    move(null, null);
-                    Strafe_at_angle(null, null);
+                    //move(null, null);
+                    //Strafe_at_angle(null, null);
                     Front_left.setTargetPosition((int) (Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885));
                 }
                 double i_end3 = Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885;
@@ -70,8 +71,8 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
                     i_inc3 = -i_inc3;
                 }
                 for (i = 1; i_inc3 >= 0 ? i <= i_end3 : i >= i_end3; i += i_inc3) {
-                    move(null, null);
-                    Strafe_at_angle(null, null);
+                  //  move(null, null);
+                    //Strafe_at_angle(null, null);
                     Back_right.setTargetPosition((int) (Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885));
                 }
                 double i_end4 = Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885;
@@ -80,8 +81,8 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
                     i_inc4 = -i_inc4;
                 }
                 for (i = 1; i_inc4 >= 0 ? i <= i_end4 : i >= i_end4; i += i_inc4) {
-                    move(null, null);
-                    Strafe_at_angle(null, null);
+                    //move(null, null);
+                //    Strafe_at_angle(null, null);
                     Back_left.setTargetPosition((int) (Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885));
                 }
                 Reset_encoders();
@@ -92,7 +93,7 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
 
     /**
      * Describe this function...
-     */
+
     private void move(double Distance, double Angle) {
         double X2;
         double Y2;
@@ -105,7 +106,7 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
 
     /**
      * Describe this function...
-     */
+
     private void Reset_encoders() {
         Back_left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Front_right.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -115,7 +116,7 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
 
     /**
      * Describe this function...
-     */
+
     private void Strafe_at_angle(double Power, double Angle) {
         double power_1;
         double power_2;
@@ -132,3 +133,5 @@ public class MatthewSinghAutonomousHahaMickandeddiearedoingnothingatallrightnow 
         Front_right.setTargetPosition((int) (Distance * Math.sin(Angle / 180 * Math.PI) * 0.02120310002952885));
     }
 }
+
+*/

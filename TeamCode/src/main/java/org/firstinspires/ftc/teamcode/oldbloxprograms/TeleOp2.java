@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "TeleOp (Blocks to Java)")
-public class TeleOp extends LinearOpMode {
+public class TeleOp2 extends LinearOpMode {
 
   private DcMotor Front_right;
   private DcMotor Front_left;
@@ -23,8 +23,8 @@ public class TeleOp extends LinearOpMode {
    */
   @Override
   public void runOpMode() {
-    double slow;
-    double slideidle;
+    double slow=0;
+    double slideidle=0;
 
     Front_right = hardwareMap.get(DcMotor.class, "Front_right");
     Front_left = hardwareMap.get(DcMotor.class, "Front_left");

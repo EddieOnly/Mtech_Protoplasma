@@ -23,8 +23,8 @@ public class TeleOpcoolsettings extends LinearOpMode {
    */
   @Override
   public void runOpMode() {
-    double slow;
-    double slideidle;
+    double slow=0;
+    double slideidle=0;
 
     Front_right = hardwareMap.get(DcMotor.class, "Front_right");
     Front_left = hardwareMap.get(DcMotor.class, "Front_left");
