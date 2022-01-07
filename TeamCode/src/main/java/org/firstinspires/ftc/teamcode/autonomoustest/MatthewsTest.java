@@ -13,10 +13,10 @@ public class MatthewsTest extends LinearOpMode {
     DcMotor farriswheel;
     public void runOpMode() throws InterruptedException {
         //Init
-        Frontleft = hardwareMap.dcMotor.get("front_left");
-        Frontright = hardwareMap.dcMotor.get("front_right");
-        Backleft = hardwareMap.dcMotor.get("Backleft");
-        Backright = hardwareMap.dcMotor.get("BackRight");
+        Frontleft = hardwareMap.dcMotor.get("Front_left");
+        Frontright = hardwareMap.dcMotor.get("Front_right");
+        Backleft = hardwareMap.dcMotor.get("Back_left");
+        Backright = hardwareMap.dcMotor.get("Back_right");
         farriswheel = hardwareMap.dcMotor.get("farriswheel");
         waitForStart();
         //main
