@@ -7,9 +7,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@TeleOp(name = "TeleOp (Blocks to Java)")
-@Disabled
-public class ftcteleop extends LinearOpMode {
+import org.firstinspires.ftc.teamcode.robotsubsystems.Spinner;
+
+@TeleOp(name = "WorkingTeleop!!")
+public class freightfrenzyteleop extends LinearOpMode {
 
     private DcMotor Front_right;
     private DcMotor Front_left;
@@ -24,7 +25,7 @@ public class ftcteleop extends LinearOpMode {
      * This function is executed when this Op Mode is selected from the Driver Station.
      */
     @Override
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         double slow = 0;
         double slideidle;
 
@@ -45,6 +46,8 @@ public class ftcteleop extends LinearOpMode {
         linearslide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Right_Servo.setDirection(Servo.Direction.FORWARD);
         Left_Servo.setDirection(Servo.Direction.REVERSE);
+        Spinner Ferriswheel = new Spinner(hardwareMap, "ferriswheel");
+
         waitForStart();
         if (opModeIsActive()) {
             // Put run blocks here.
@@ -55,8 +58,21 @@ public class ftcteleop extends LinearOpMode {
             Back_right.setPower(slow * (-gamepad1.left_stick_x + -gamepad1.right_stick_y + gamepad1.right_stick_x));
             Front_right.setPower(slow * (-gamepad1.left_stick_x + (-gamepad1.right_stick_y - gamepad1.right_stick_x)));
             Front_left.setPower(slow * (gamepad1.left_stick_x + -gamepad1.right_stick_y + gamepad1.right_stick_x));
-            ferriswheel.setPower(-gamepad1.right_trigger);
-            ferriswheel.setPower(gamepad1.left_trigger);
+            //ferriswheel.setPower(-gamepad1.right_trigger);
+            //ferriswheel.setPower(gamepad1.left_trigger);
+
+            //bluesidespinner
+            if (gamepad1.right_bumper) {
+                Ferriswheel.blue(.45);
+                Thread.sleep(2150);
+            }
+
+            if (gamepad1.left_bumper) {
+                Ferriswheel.red(.45);
+                Thread.sleep(2150);
+                Ferriswheel.
+            }
+
             if (gamepad1.x) {
                 slow = 0.35;
             }

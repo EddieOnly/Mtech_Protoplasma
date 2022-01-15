@@ -11,7 +11,7 @@ public class Spinnertestred extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         //initialization
-        Spinner Ferriswheel = new Spinner(hardwareMap, "ferriswheel");
+        Spinner Ferriswheel = new Spinner (hardwareMap, "ferriswheel");
 
         waitForStart();
         //main
