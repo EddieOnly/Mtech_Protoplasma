@@ -26,6 +26,8 @@ public class Spinner {
         Thread.sleep(2150);
 
     }
-
+    public void stop(double power) throws InterruptedException {
+        ferriswheel.setPower(0);
+    }
 
 }

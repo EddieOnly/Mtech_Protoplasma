@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.robotsubsystems.Spinner;
-
+@Disabled
 @Autonomous(name="redsidespinner")
 public class Spinnertestred extends LinearOpMode {
 

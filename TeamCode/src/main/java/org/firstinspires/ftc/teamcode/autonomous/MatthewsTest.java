@@ -1,9 +1,10 @@
-package org.firstinspires.ftc.teamcode.autonomoustest;
+package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-
+@Disabled
 @Autonomous(name="MatthewsPetTrash")
 public class MatthewsTest extends LinearOpMode {
     DcMotor Frontleft;

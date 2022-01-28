@@ -20,7 +20,6 @@ public class freightfrenzyteleop extends LinearOpMode {
     private Servo Right_Servo;
     private Servo Left_Servo;
     private DcMotor ferriswheel;
-
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
      */
@@ -64,13 +63,14 @@ public class freightfrenzyteleop extends LinearOpMode {
             //bluesidespinner
             if (gamepad1.right_bumper) {
                 Ferriswheel.blue(.45);
-                Thread.sleep(2150);
+                Thread.sleep(160);
+                Ferriswheel.stop(0);
             }
 
             if (gamepad1.left_bumper) {
                 Ferriswheel.red(.45);
-                Thread.sleep(2150);
-                Ferriswheel.
+                Thread.sleep(160);
+                Ferriswheel.stop(0);
             }
 
             if (gamepad1.x) {
@@ -82,9 +82,9 @@ public class freightfrenzyteleop extends LinearOpMode {
             if (gamepad2.dpad_up) {
                 linearslide.setPower(-0.9);
             } else if (gamepad2.dpad_down) {
-                linearslide.setPower(0);
+                linearslide.setPower(.4);
             } else {
-                linearslide.setPower(-0.4);
+                linearslide.setPower(-0.09);
             }
             if (gamepad2.x) {
                 slideidle = -0.1;
