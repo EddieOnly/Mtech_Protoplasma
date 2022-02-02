@@ -33,8 +33,6 @@ public class EncoderDriveBaseTest extends LinearOpMode {
         Left_Servo = hardwareMap.get(Servo.class, "Left_Servo");
     }
 
-     BlueRight Encoder = new Blueright ()
-
 
 
 }

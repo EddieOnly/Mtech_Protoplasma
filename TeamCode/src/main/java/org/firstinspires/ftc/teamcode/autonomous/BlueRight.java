@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "BlueRitht")
+@Autonomous(name = "BlueRight")
 
 public class BlueRight extends LinearOpMode {
 
