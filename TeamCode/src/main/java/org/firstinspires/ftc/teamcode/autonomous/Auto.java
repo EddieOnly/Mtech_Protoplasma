@@ -1,23 +1,21 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-@Autonomous(name = "RedLeftAggrresive")
+import org.firstinspires.ftc.teamcode.drivetrains.BasicDrivetrain;
 
-public class RedLeftAgressive extends LinearOpMode {
+@Autonomous(name = "TheOnlyAuto")
 
-    private DcMotor ferriswheel;
+public class Auto extends BasicDrivetrain {
+
     private DcMotor Front_right;
     private DcMotor Back_right;
     private DcMotor Front_left;
     private DcMotor Back_left;
     private DcMotor linearslide;
-    private Servo Right_Servo;
     private Servo Left_Servo;
 
     /**
@@ -28,64 +26,22 @@ public class RedLeftAgressive extends LinearOpMode {
         // TODO: Enter the type for variable named i
         double i;
 
-        ferriswheel = hardwareMap.get(DcMotor.class, "ferriswheel");
         Front_right = hardwareMap.get(DcMotor.class, "Front_right");
         Back_right = hardwareMap.get(DcMotor.class, "Back_right");
         Front_left = hardwareMap.get(DcMotor.class, "Front_left");
         Back_left = hardwareMap.get(DcMotor.class, "Back_left");
         linearslide = hardwareMap.get(DcMotor.class, "linearslide");
-        Right_Servo = hardwareMap.get(Servo.class, "Right_Servo");
         Left_Servo = hardwareMap.get(Servo.class, "Left_Servo");
 
         Inti();
         waitForStart();
         if (opModeIsActive()) {
-            linearslide.setPower(0.3);
-            Strafe_at_angle(0.5, 0);
-            sleep(240);
-            Zero_power();
-            Strafe_at_angle(0.38, 270);
-            sleep(700);
-            Zero_power();
-            Strafe_at_angle(0.5, 180);
-            sleep(55);
-            Zero_power();
-            ferriswheel.setPower(-0.3);
-            sleep(5500);
-            Zero_power();
-            linearslide.setPower(.5);
-            Strafe_at_angle(0.5, 0);
-            sleep(200);
-            Zero_power();
-            Strafe_at_angle(0.5, 90);
-            sleep(3450);
-            Zero_power();
-            Strafe_at_angle(0.5, 0);
-            sleep(570);
-            Zero_power();
-            linearslide.setPower(-.5);
-            sleep(330);
-            Zero_power();
-            Right_Servo.setPosition(1);
-            Left_Servo.setPosition(1);
-            linearslide.setPower(.1);
-            sleep(300);
-            Zero_power();
-           linearslide.setPower(0.4);
-           rotateRight(.5);
-           sleep(500);
-           Zero_power();
-          linearslide.setPower(-0.5);
-          sleep(1500);
-          linearslide.setPower(0.7);
-          sleep(350);
-          linearslide.setPower(0.7);
-            Strafe_at_angle(1, 270);
-            sleep(100);
-           linearslide.setPower(0.5);
-            Strafe_at_angle(1, 0);
-            sleep(1700);
-            Zero_power();
+            linearslide.setPower(-0.5);
+            sleep(1000);
+            Left_Servo.setPosition(0.5);
+        Strafe_at_angle(0.5,0);
+        sleep(2000);
+        Zero_power();
         }
     }
 
@@ -153,16 +109,12 @@ public class RedLeftAgressive extends LinearOpMode {
         Front_left.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_left.setDirection(DcMotorSimple.Direction.REVERSE);
         Back_right.setDirection(DcMotorSimple.Direction.FORWARD);
-        linearslide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Right_Servo.setDirection(Servo.Direction.FORWARD);
+        linearslide.setDirection(DcMotorSimple.Direction.REVERSE);
         Left_Servo.setDirection(Servo.Direction.REVERSE);
-        Right_Servo.setPosition(.5);
-        Left_Servo.setPosition(.5);
-    }
-    public void rotateRight(double power) {
-        Back_left.setPower(power);
-        Back_right.setPower(-power);
-        Front_right.setPower(-power);
-        Front_left.setPower(power);
+        Front_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Front_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Back_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        Back_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        linearslide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 }
