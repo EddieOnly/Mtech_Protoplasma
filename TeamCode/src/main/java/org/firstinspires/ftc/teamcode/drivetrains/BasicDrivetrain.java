@@ -16,7 +16,7 @@ public class BasicDrivetrain extends LinearOpMode{
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
      */
-    public void runOpMode() {
+    public void runOpMode() throws InterruptedException {
         // TODO: Enter the type for variable named i
         double i;
 
