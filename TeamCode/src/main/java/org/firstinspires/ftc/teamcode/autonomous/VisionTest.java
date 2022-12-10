@@ -19,17 +19,8 @@ public class VisionTest extends LinearOpMode {
     public DcMotor Front_left;
     public DcMotor Back_left;
     public DcMotor Lift;
-    public DcMotor Bar;
-    public DcMotor outLeft_Extend;
-    public DcMotor outRight_Extend;
-    public CRServo InRight_Front;
-    public CRServo InRight_Back;
-    public CRServo InLeft_Front;
-    public CRServo InLeft_Back;
-
-
-    public CRServo Out_Right;
-    public CRServo Out_Left;
+    public CRServo In_Right;
+    public CRServo In_Left;
 
     SleeveDetection sleeveDetection = new SleeveDetection();
     BasicDrivetrain basicDrivetrain = new BasicDrivetrain();
@@ -44,32 +35,17 @@ public class VisionTest extends LinearOpMode {
         Front_left = hardwareMap.get(DcMotor.class, "FL");
         Back_left = hardwareMap.get(DcMotor.class, "BL");
         Back_right = hardwareMap.get(DcMotor.class, "BR");
-        Out_Right = hardwareMap.get(CRServo.class, "ORS");
-        Out_Left = hardwareMap.get(CRServo.class, "OLS");
+        In_Right = hardwareMap.get(CRServo.class, "IRS");
+        In_Left = hardwareMap.get(CRServo.class, "ILS");
         Lift = hardwareMap.get(DcMotor.class, "L");
-        Bar = hardwareMap.get(DcMotor.class, "4B");
-        outLeft_Extend = hardwareMap.get(DcMotor.class, "OL");
-        outRight_Extend = hardwareMap.get(DcMotor.class, "OR");
-        InLeft_Back = hardwareMap.get(CRServo.class, "ILB");
-        InLeft_Front = hardwareMap.get(CRServo.class, "ILF");
-        InRight_Back = hardwareMap.get(CRServo.class, "IRB");
-        InRight_Front = hardwareMap.get(CRServo.class, "IRF");
 
         Front_right.setDirection(DcMotorSimple.Direction.REVERSE);
         Front_left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_left.setDirection(DcMotorSimple.Direction.FORWARD);
         Back_right.setDirection(DcMotorSimple.Direction.REVERSE);
-        Out_Right.setDirection(CRServo.Direction.REVERSE);
-        Out_Left.setDirection(CRServo.Direction.FORWARD);
+        In_Right.setDirection(CRServo.Direction.REVERSE);
+        In_Left.setDirection(CRServo.Direction.FORWARD);
         Lift.setDirection(DcMotorSimple.Direction.FORWARD);
-        Bar.setDirection(DcMotorSimple.Direction.REVERSE);
-        InRight_Front.setDirection(DcMotorSimple.Direction.REVERSE);
-        InRight_Back.setDirection(DcMotorSimple.Direction.FORWARD);
-        InLeft_Front.setDirection(DcMotorSimple.Direction.REVERSE);
-        InLeft_Back.setDirection(DcMotorSimple.Direction.FORWARD);
-
-        outLeft_Extend.setDirection(DcMotorSimple.Direction.FORWARD);
-        outRight_Extend.setDirection(DcMotorSimple.Direction.REVERSE);
 
 
         Front_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -77,9 +53,6 @@ public class VisionTest extends LinearOpMode {
         Back_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Back_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        outRight_Extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        outLeft_Extend.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Bar.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         camera = OpenCvCameraFactory.getInstance().createWebcam(hardwareMap.get(WebcamName.class, webcamName), cameraMonitorViewId);

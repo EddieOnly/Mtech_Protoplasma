@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.teleop;
 
 import android.annotation.SuppressLint;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -9,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.checkerframework.checker.units.qual.Speed;
 import org.firstinspires.ftc.teamcode.drivetrains.BasicDrivetrain;
-
+@Disabled
 @TeleOp(name = "andrewTeleOp")
 
 public class andrewTeleOP extends BasicDrivetrain {
@@ -52,6 +53,8 @@ public class andrewTeleOP extends BasicDrivetrain {
         Back_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         linearslide.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         waitForStart();
+
+
 
         if (opModeIsActive())
 
