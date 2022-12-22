@@ -6,8 +6,8 @@ import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-@TeleOp(name = "OnlyTeleOp")
-public class freightfrenzyteleop extends LinearOpMode {
+@TeleOp(name = "TELEOP FOR COMPETITION")
+public class PowerPlay_TeleOp extends LinearOpMode {
 
     private DcMotor Front_right;
     private DcMotor Front_left;
@@ -23,7 +23,7 @@ public class freightfrenzyteleop extends LinearOpMode {
      */
     @Override
     public void runOpMode() throws InterruptedException {
-        double slow = 0;
+        double Speed = 0.5;
 
         Front_right = hardwareMap.get(DcMotor.class, "FR");
         Front_left = hardwareMap.get(DcMotor.class, "FL");
@@ -35,10 +35,10 @@ public class freightfrenzyteleop extends LinearOpMode {
         In_Left = hardwareMap.get(CRServo.class, "ILS");
 
         // Put initialization blocks here.
-        Front_right.setDirection(DcMotorSimple.Direction.FORWARD);
-        Front_left.setDirection(DcMotorSimple.Direction.REVERSE);
-        Back_left.setDirection(DcMotorSimple.Direction.REVERSE);
-        Back_right.setDirection(DcMotorSimple.Direction.FORWARD);
+        Front_right.setDirection(DcMotorSimple.Direction.REVERSE);
+        Front_left.setDirection(DcMotorSimple.Direction.FORWARD);
+        Back_left.setDirection(DcMotorSimple.Direction.FORWARD);
+        Back_right.setDirection(DcMotorSimple.Direction.REVERSE);
         linearSlide_right.setDirection(DcMotorSimple.Direction.REVERSE);
         linearSlide_left.setDirection(DcMotorSimple.Direction.FORWARD);
         In_Right.setDirection(CRServo.Direction.REVERSE);
@@ -53,41 +53,37 @@ public class freightfrenzyteleop extends LinearOpMode {
 
 
         waitForStart();
-        if (opModeIsActive())
-            linearSlide_right.setPower(0);
-            linearSlide_left.setPower(0);
 
-
-        sleep(1000);
         while (opModeIsActive()) {
 
-            Back_left.setPower(slow * 1 * 1 * (gamepad1.right_stick_x + (-gamepad1.left_stick_y - gamepad1.left_stick_x)));
-            Back_right.setPower(slow * (-gamepad1.right_stick_x + -gamepad1.left_stick_y + gamepad1.left_stick_x));
-            Front_right.setPower(slow * (-gamepad1.right_stick_x + (-gamepad1.left_stick_y - gamepad1.left_stick_x)));
-            Front_left.setPower(slow * (gamepad1.right_stick_x + -gamepad1.left_stick_y + gamepad1.left_stick_x));
+            Back_left.setPower(Speed * (-gamepad1.right_stick_x + (-gamepad1.left_stick_y - gamepad1.left_stick_x)));
+            Back_right.setPower(Speed * (gamepad1.right_stick_x + -gamepad1.left_stick_y + gamepad1.left_stick_x));
+            Front_right.setPower(Speed * 0.85 * (gamepad1.right_stick_x + (-gamepad1.left_stick_y - gamepad1.left_stick_x)));
+            Front_left.setPower(Speed * 0.85 * (-gamepad1.right_stick_x + -gamepad1.left_stick_y + gamepad1.left_stick_x));
 
 
-            linearSlide_right.setPower(gamepad2.left_stick_y);
-            linearSlide_left.setPower(gamepad2.left_stick_y);
+            linearSlide_right.setPower(gamepad2.left_stick_y * 0.8);
+            linearSlide_left.setPower(gamepad2.left_stick_y * 0.8);
+//
+//            linearSlide_left.setPower(-0.2);
+//            linearSlide_right.setPower(-0.2);
 
 
-            if (gamepad1.x) {
-                slow = 0.35;
-            }
             if (gamepad1.y) {
-                slow = 1;
-            }
-            if (gamepad2.left_bumper) {
-                In_Left.setPower(0.5);
-                In_Right.setPower(0.5);
+                Speed = 0.85;
+            } else Speed = 0.35 + gamepad1.right_trigger / 2;
+
+            if (gamepad2.b) {
+                In_Left.setPower(-0.8);
+                In_Right.setPower(-0.8);
+            } else if (gamepad2.x) {
+                In_Right.setPower(0.8);
+                In_Left.setPower(0.8);
             } else {
                 In_Left.setPower(0);
                 In_Right.setPower(0);
             }
-            if (gamepad2.right_bumper) {
-                In_Left.setPower(-0.5);
-                In_Right.setPower(-0.5);
-            }
+
 
             telemetry.update();
             telemetry.addData("RUN", getRuntime());
@@ -95,8 +91,11 @@ public class freightfrenzyteleop extends LinearOpMode {
             telemetry.addData("Back Right", Back_right.getPower());
             telemetry.addData("Front Right", Front_right.getPower());
             telemetry.addData("Front Left", Front_left.getPower());
-            telemetry.addData("linear slide right", linearSlide_right.getPower());
-            telemetry.addData("linear slide left", linearSlide_left.getPower());
+            telemetry.addData("Right Lift", linearSlide_right.getPower());
+            telemetry.addData("Left Lift", linearSlide_left.getPower());
+            telemetry.addData("Right Servo", linearSlide_right.getPower());
+            telemetry.addData("Left Servo", linearSlide_left.getPower());
         }
     }
 }
+

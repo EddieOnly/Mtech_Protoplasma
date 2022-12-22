@@ -1,19 +1,22 @@
 package org.firstinspires.ftc.teamcode.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.Odometry.AutoEncoder;
 import org.firstinspires.ftc.teamcode.drivetrains.BasicDrivetrain;
 import org.openftc.easyopencv.OpenCvCamera;
 import org.openftc.easyopencv.OpenCvCameraFactory;
 import org.openftc.easyopencv.OpenCvCameraRotation;
-
+import org.firstinspires.ftc.teamcode.Odometry.AutoEncoder;
+@Disabled
 @Autonomous(name = "Auto")
-public class VisionTest extends LinearOpMode {
+public class VisionTest extends AutoEncoder {
     public DcMotor Front_right;
     public DcMotor Back_right;
     public DcMotor Front_left;
@@ -78,8 +81,7 @@ public class VisionTest extends LinearOpMode {
         waitForStart();
         while (opModeIsActive()) {
             if (position == SleeveDetection.ParkingPosition.CENTER) {
-                Strafe_at_angle(1, 0);
-                sleep(1000);
+              DriveForward(.4,100);
                 Zero_power();
                 return;
             }

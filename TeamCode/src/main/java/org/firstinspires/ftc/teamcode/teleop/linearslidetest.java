@@ -11,28 +11,40 @@ public class linearslidetest extends LinearOpMode {
     public DcMotor Lift;
 
     public void runOpMode() throws InterruptedException {
-        Lift = hardwareMap.get(DcMotor.class, "L");
+        Lift = hardwareMap.get(DcMotor.class, "LL");
         Lift.setDirection(DcMotorSimple.Direction.REVERSE);
         Lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
-
-        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Lift.setPower(-0.7); //Or whatever power is forward/up
-        Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);        waitForStart();
-
-
+        Lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        waitForStart();
 
         while (opModeIsActive()) {
-
-            if (gamepad1.a) {
-                Lift.setTargetPosition(0);
-            }
-            if (gamepad1.x) {
-                Lift.setTargetPosition(100);
-            }
-
-            telemetry.update();
-            telemetry.addData("Lift To", Lift.getTargetPosition());
+            Lift_High(.4, 250);
         }
     }
+
+    public void Lift_High(double power, int distance) {
+
+        // reset encoders
+        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //target position
+        Lift.setTargetPosition(distance);
+
+        Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // at 12 Volts battery, .4 speed, 1240 sleep time, turns approx. 90 deg
+
+        Lift.setPower(power);
+
+        while (opModeIsActive() && Lift.isBusy()) {
+            telemetry.addData("Lift", "Running to %7d", distance);
+            telemetry.update();
+
+            idle();
+        }
+
+        Lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
 }
+

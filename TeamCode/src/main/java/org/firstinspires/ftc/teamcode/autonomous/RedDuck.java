@@ -4,6 +4,7 @@ package org.firstinspires.ftc.teamcode.autonomous;
 import com.acmerobotics.dashboard.FtcDashboard;
 import com.acmerobotics.dashboard.telemetry.MultipleTelemetry;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
@@ -18,6 +19,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 /**
  * A simple test of  {@link DuckPipeline}
  */
+@Disabled
 @Autonomous(name = "OpenCV Red", group = "Tutorials")
 public class RedDuck extends BasicDrivetrain {
     double colorArea;
