@@ -12,14 +12,29 @@ public class linearslidetest extends LinearOpMode {
 
     public void runOpMode() throws InterruptedException {
         Lift = hardwareMap.get(DcMotor.class, "LL");
+
         Lift.setDirection(DcMotorSimple.Direction.REVERSE);
         Lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-
+        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        Lift.setPower(.4);
+
         waitForStart();
 
         while (opModeIsActive()) {
-            Lift_High(.4, 250);
+            //Lift_High(.4, 250);
+            Lift.setTargetPosition(250);
+            while (opModeIsActive() && Lift.isBusy()) {
+                idle();
+            }
+
+            Thread.sleep(5000);
+
+            Lift.setTargetPosition(0);
+            while (opModeIsActive() && Lift.isBusy()) {
+                idle();
+            }
         }
     }
 

@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp(name = "TELEOP FOR COMPETITION")
 public class PowerPlay_TeleOp extends LinearOpMode {
@@ -17,6 +18,7 @@ public class PowerPlay_TeleOp extends LinearOpMode {
     private DcMotor linearSlide_left;
     public CRServo In_Right;
     public CRServo In_Left;
+    public Servo Grabber;
 
     /**
      * This function is executed when this Op Mode is selected from the Driver Station.
@@ -33,6 +35,7 @@ public class PowerPlay_TeleOp extends LinearOpMode {
         linearSlide_left = hardwareMap.get(DcMotor.class, "LL");
         In_Right = hardwareMap.get(CRServo.class, "IRS");
         In_Left = hardwareMap.get(CRServo.class, "ILS");
+        Grabber = hardwareMap.get(Servo.class, "Grabber");
 
         // Put initialization blocks here.
         Front_right.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -43,6 +46,8 @@ public class PowerPlay_TeleOp extends LinearOpMode {
         linearSlide_left.setDirection(DcMotorSimple.Direction.FORWARD);
         In_Right.setDirection(CRServo.Direction.REVERSE);
         In_Left.setDirection(CRServo.Direction.FORWARD);
+        Grabber.setPosition(0.35);
+
 
         Front_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         Front_left.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -79,6 +84,10 @@ public class PowerPlay_TeleOp extends LinearOpMode {
             } else if (gamepad2.x) {
                 In_Right.setPower(0.8);
                 In_Left.setPower(0.8);
+            } else if (gamepad2.y) {
+                Grabber.setPosition(0.5);
+            } else if (gamepad2.a) {
+                Grabber.setPosition(0.35);
             } else {
                 In_Left.setPower(0);
                 In_Right.setPower(0);

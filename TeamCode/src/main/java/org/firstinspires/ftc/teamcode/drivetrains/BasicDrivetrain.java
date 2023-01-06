@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class BasicDrivetrain extends LinearOpMode{
+public class BasicDrivetrain extends LinearOpMode {
     private DcMotor Front_right;
     private DcMotor Back_right;
     private DcMotor Front_left;
@@ -18,7 +18,7 @@ public class BasicDrivetrain extends LinearOpMode{
      */
     public void runOpMode() throws InterruptedException {
         // TODO: Enter the type for variable named i
-        double i;
+
 
         Front_right = hardwareMap.get(DcMotor.class, "Front_right");
         Back_right = hardwareMap.get(DcMotor.class, "Back_right");
@@ -29,29 +29,6 @@ public class BasicDrivetrain extends LinearOpMode{
 
     }
 
-    /**
-     * Describe this function...
-     */
-    private void Zero_power() {
-        Front_right.setPower(0);
-        Back_right.setPower(0);
-        Front_left.setPower(0);
-        Back_left.setPower(0);
-    }
-
-    private void move(double Distance, double Angle) {
-        double Y2;
-        double X2;
-
-        Reset_encoders();
-        Y2 = Distance * Math.sin(Angle / 180 * Math.PI);
-        X2 = Distance * Math.cos(Angle / 180 * Math.PI);
-        Strafe_at_angle(0.8, Angle);
-    }
-
-    /**
-     * Describe this function...
-     */
     private void Reset_encoders() {
         Back_left.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         Front_right.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
