@@ -202,7 +202,7 @@ public class AprilTag_Right extends LinearOpMode {
             StopDriving();
             linearSlide_left.setPower(0);
             linearSlide_right.setPower(0);
-            StrafeRight(.4, 1720);
+            StrafeRight(.4, 1850);
             DriveBackwards(.4, 10);
             StopDriving();
 

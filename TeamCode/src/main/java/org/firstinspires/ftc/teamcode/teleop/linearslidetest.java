@@ -1,52 +1,54 @@
 package org.firstinspires.ftc.teamcode.teleop;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-@Disabled
-@TeleOp(name = "Linearslide Test")
+
+@TeleOp(name = "Lift Test")
 public class linearslidetest extends LinearOpMode {
     public DcMotor Lift;
 
     public void runOpMode() throws InterruptedException {
+
         Lift = hardwareMap.get(DcMotor.class, "LL");
 
-        Lift.setDirection(DcMotorSimple.Direction.REVERSE);
         Lift.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        Lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        Lift.setPower(.4);
+        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        final int SLIDE_INITIAL = Lift.getCurrentPosition();
 
         waitForStart();
 
-        while (opModeIsActive()) {
-            //Lift_High(.4, 250);
-            Lift.setTargetPosition(250);
-            while (opModeIsActive() && Lift.isBusy()) {
-                idle();
-            }
+        while (opModeIsActive() && !isStopRequested()) {
 
-            Thread.sleep(5000);
+            slideTo(SLIDE_INITIAL + 3, 0.5);
+            telemetry.addData("sleeping 1", "");
+            telemetry.update();
+            sleep(1000);
+            slideTo(SLIDE_INITIAL, 0.5);
+            telemetry.addData("sleeping 2", "");
+            telemetry.update();
+            sleep(1000);
+            slideTo(SLIDE_INITIAL + 2, 0.5);
+            telemetry.addData("sleeping 3", "");
+            telemetry.update();
+            sleep(1000);
+            slideTo(SLIDE_INITIAL, 0.5);
+            telemetry.addData("sleeping 4", "");
+            telemetry.update();
+            sleep(1000);
 
-            Lift.setTargetPosition(0);
-            while (opModeIsActive() && Lift.isBusy()) {
-                idle();
-            }
         }
     }
 
-    public void Lift_High(double power, int distance) {
+    public void Lift_Up(double power, int distance) {
 
         // reset encoders
-        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+//        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
         //target position
         Lift.setTargetPosition(distance);
-
-        Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         // at 12 Volts battery, .4 speed, 1240 sleep time, turns approx. 90 deg
 
@@ -58,8 +60,42 @@ public class linearslidetest extends LinearOpMode {
 
             idle();
         }
+    }
+
+
+    public void Lift_Down(double power, int distance) {
+
+        // reset encoders
+        Lift.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
+        //target position
+        Lift.setTargetPosition(-distance);
+
+        Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
+        // at 12 Volts battery, .4 speed, 1240 sleep time, turns approx. 90 deg
+
+        Lift.setPower(power);
+
+        while (opModeIsActive() && Lift.isBusy()) {
+            telemetry.addData("Lift", "Running to %7d", -distance);
+            telemetry.update();
+
+            idle();
+        }
 
         Lift.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+    }
+
+    public int slideTo(int targetPosition, double power) {
+        Lift.setTargetPosition(targetPosition);
+        Lift.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        Lift.setPower(power);
+        while (opModeIsActive() && Lift.isBusy()) {
+            telemetry.addData("Lift", "Running to %7d", targetPosition);
+            telemetry.update();
+        }
+        return targetPosition;
     }
 }
 

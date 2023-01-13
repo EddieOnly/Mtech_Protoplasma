@@ -46,7 +46,7 @@ public class PowerPlay_TeleOp extends LinearOpMode {
         linearSlide_left.setDirection(DcMotorSimple.Direction.FORWARD);
         In_Right.setDirection(CRServo.Direction.REVERSE);
         In_Left.setDirection(CRServo.Direction.FORWARD);
-        Grabber.setPosition(0.35);
+//        Grabber.setPosition(0.35);
 
 
         Front_right.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -60,34 +60,33 @@ public class PowerPlay_TeleOp extends LinearOpMode {
         waitForStart();
 
         while (opModeIsActive()) {
-
-            Back_left.setPower(Speed * (-gamepad1.right_stick_x + (-gamepad1.left_stick_y - gamepad1.left_stick_x)));
-            Back_right.setPower(Speed * (gamepad1.right_stick_x + -gamepad1.left_stick_y + gamepad1.left_stick_x));
-            Front_right.setPower(Speed * 0.85 * (gamepad1.right_stick_x + (-gamepad1.left_stick_y - gamepad1.left_stick_x)));
-            Front_left.setPower(Speed * 0.85 * (-gamepad1.right_stick_x + -gamepad1.left_stick_y + gamepad1.left_stick_x));
+            //Basic Movement Control
+            Back_left.setPower(Speed * (-gamepad1.right_stick_x + (+gamepad1.left_stick_y - -gamepad1.left_stick_x)));
+            Back_right.setPower(Speed * (gamepad1.right_stick_x + +gamepad1.left_stick_y + -gamepad1.left_stick_x));
+            Front_right.setPower(Speed * 0.85 * (gamepad1.right_stick_x + (+gamepad1.left_stick_y - -gamepad1.left_stick_x)));
+            Front_left.setPower(Speed * 0.85 * (-gamepad1.right_stick_x + +gamepad1.left_stick_y + -gamepad1.left_stick_x));
 
 
             linearSlide_right.setPower(gamepad2.left_stick_y * 0.8);
             linearSlide_left.setPower(gamepad2.left_stick_y * 0.8);
-//
-//            linearSlide_left.setPower(-0.2);
-//            linearSlide_right.setPower(-0.2);
 
+            // Change the Speed of the robot
 
             if (gamepad1.y) {
                 Speed = 0.85;
             } else Speed = 0.35 + gamepad1.right_trigger / 2;
-
+            //Intake Control
             if (gamepad2.b) {
                 In_Left.setPower(-0.8);
                 In_Right.setPower(-0.8);
             } else if (gamepad2.x) {
                 In_Right.setPower(0.8);
                 In_Left.setPower(0.8);
-            } else if (gamepad2.y) {
-                Grabber.setPosition(0.5);
-            } else if (gamepad2.a) {
-                Grabber.setPosition(0.35);
+                //Grabber Control
+//            } else if (gamepad2.y) {
+//                Grabber.setPosition(0.5);
+//            } else if (gamepad2.a) {
+//                Grabber.setPosition(0.35);
             } else {
                 In_Left.setPower(0);
                 In_Right.setPower(0);

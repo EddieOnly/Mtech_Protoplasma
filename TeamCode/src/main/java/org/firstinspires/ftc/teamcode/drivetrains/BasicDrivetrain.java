@@ -1,10 +1,11 @@
 package org.firstinspires.ftc.teamcode.drivetrains;
 
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
-
+@Disabled
 public class BasicDrivetrain extends LinearOpMode {
     private DcMotor Front_right;
     private DcMotor Back_right;
